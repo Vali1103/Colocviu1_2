@@ -15,7 +15,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="Next Term"/>
+            android:hint="Next Term"
+            android:inputType="number"/>
 
         <Button
             android:id="@+id/add_button"
@@ -46,7 +47,8 @@
             android:id="@+id/compute_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Compute"/>
+            android:text="Compute"
+            android:layout_marginLeft="120dp"/>
     </LinearLayout>
 
 </LinearLayout>

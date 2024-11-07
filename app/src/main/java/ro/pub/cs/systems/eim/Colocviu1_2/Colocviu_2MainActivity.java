@@ -13,8 +13,7 @@ public class Colocviu_2MainActivity extends AppCompatActivity {
     EditText edit_text_next_term;
     EditText edit_text_all_terms;
     Button add_button, compute_button;
-    private static final String TAG = "Colocviu1_2SecondaryActivity";
-
+    private static final String TAG = "Colocviu_2MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,24 +27,6 @@ public class Colocviu_2MainActivity extends AppCompatActivity {
 
         add_button.setOnClickListener(new ButtonClickListener());
         compute_button.setOnClickListener(new ButtonClickListener());
-        Intent intent = getIntent();
-        if (intent != null && intent.hasExtra(Constants.ALL_TERMS)) {
-            String allTerms = intent.getStringExtra(Constants.ALL_TERMS);
-            String[] termsArray = allTerms.split("\\+");
-
-            int sum = 0;
-            for (String term : termsArray) {
-                sum += Integer.parseInt(term);
-            }
-
-            // Printează suma în log
-            Log.d(TAG, "Suma calculată este: " + sum);
-
-            Intent resultIntent = new Intent();
-            resultIntent.putExtra("SUM_RESULT", sum);
-            setResult(RESULT_OK, resultIntent);
-            finish();
-        }
     }
 
     @Override
@@ -56,6 +37,7 @@ public class Colocviu_2MainActivity extends AppCompatActivity {
             edit_text_all_terms.setText(String.valueOf(sumResult));
         }
     }
+
     public class ButtonClickListener implements View.OnClickListener {
         @Override
         public void onClick(View view) {
@@ -73,15 +55,26 @@ public class Colocviu_2MainActivity extends AppCompatActivity {
                     edit_text_next_term.setText("");
                 }
             } else if (view.getId() == R.id.compute_button) {
-                Intent intent = new Intent(getApplicationContext(), Colocviu_2MainActivity.class);
-                intent.putExtra(Constants.ALL_TERMS, edit_text_all_terms.getText().toString());
-                getApplicationContext().startService(intent);
-            } else if (view.getId() == R.id.compute_button) {
+                Log.d(TAG, "Starting Colocviu1_2SecondaryActivity");
                 Intent intent = new Intent(getApplicationContext(), Colocviu1_2SecondaryActivity.class);
                 intent.putExtra(Constants.ALL_TERMS, edit_text_all_terms.getText().toString());
                 startActivityForResult(intent, Constants.SECONDARY_ACTIVITY_REQUEST_CODE);
-
             }
+        }
+    }
+
+
+    @Override
+    protected void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putString(Constants.ALL_TERMS, edit_text_all_terms.getText().toString());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        if (savedInstanceState.containsKey(Constants.ALL_TERMS)) {
+            edit_text_all_terms.setText(savedInstanceState.getString(Constants.ALL_TERMS));
         }
     }
 }

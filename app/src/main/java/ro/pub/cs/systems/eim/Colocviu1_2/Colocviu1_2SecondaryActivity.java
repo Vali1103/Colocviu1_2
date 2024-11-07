@@ -3,6 +3,7 @@ package ro.pub.cs.systems.eim.Colocviu1_2;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
 public class Colocviu1_2SecondaryActivity extends Activity {
 
@@ -20,6 +21,8 @@ public class Colocviu1_2SecondaryActivity extends Activity {
             for (String term : termsArray) {
                 sum += Integer.parseInt(term);
             }
+
+            Toast.makeText(this, "Suma calculată este: " + sum, Toast.LENGTH_LONG).show();
 
             Intent resultIntent = new Intent();
             resultIntent.putExtra("SUM_RESULT", sum);

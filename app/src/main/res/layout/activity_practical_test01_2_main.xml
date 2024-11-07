@@ -35,7 +35,8 @@
             android:layout_height="wrap_content"
             android:hint="All terms"
             android:editable="false"
-            android:focusable="false"/>
+            android:focusable="false"
+            android:saveEnabled="false"/>
     </LinearLayout>
 
     <LinearLayout

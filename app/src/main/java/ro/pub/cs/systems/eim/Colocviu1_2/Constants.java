@@ -25,4 +25,7 @@ public class Constants {
     final public static String BROADCAST_RECEIVER_EXTRA = "message";
     final public static String BROADCAST_RECEIVER_TAG = "[Message]";
 
+    // Adaugă aceste constante pentru a rezolva eroarea
+    final public static String SUM_RESULT = "SUM_RESULT";  // pentru suma calculată
+    final public static String SUM_BROADCAST_ACTION = "ro.pub.cs.systems.eim.practicaltest01.SUM_BROADCAST_ACTION"; // acțiunea pentru broadcast
 }
